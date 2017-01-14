@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+	<ul>
+	{% if form.errors %}
+        <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
+      {% endif %}  
+		{% if user.is_authenticated %}
+		<li> hello {{ user.username }}!</li>
+		<a href="/myapp/logout/">Logout</a><br />
+		{% else %}
+		<li><a href="/myapp/login/">Login</a></li>
+		<li><a href="/myapp/register/">regist</a></li>
+		{% endif %}
+		
+	</ul>
+</body>
+</html>
+

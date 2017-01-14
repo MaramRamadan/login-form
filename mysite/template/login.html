@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+    </head>
+
+    <body>
+    
+        <div class="container">
+            <h1>Login</h1>
+    		If you have not created an account yet, then please <a href="/myapp/register/">sign up </a> first.
+            <form id="login_form" method="post" action="/myapp/login/">
+                {% csrf_token %}
+                Username: <input type="text" name="username" value="" size="50" />
+                <br />
+                Password: <input type="password" name="password" value="" size="50" />
+                <br />
+
+                <input type="submit" value="Login" />
+            </form>
+            <a href="/accounts/password/reset">forgetten password</a>
+        </div>
+    </body>
+</html>

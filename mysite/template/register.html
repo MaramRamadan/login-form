@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+    </head>
+
+    <body>
+        <h1>Register</h1>
+       Already have an account? Then please <a href="/myapp/login/">sign in.</a>
+
+        <form id="user_form" method="post" action="/myapp/register/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" name="submit" value="Register" />
+        </form>
+      
+    </body>
+</html>
