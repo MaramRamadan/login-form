@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'myapp',
     'allauth',
     'allauth.account',
+    'tastypie',
+
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 3600
