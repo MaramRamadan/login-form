@@ -10,4 +10,5 @@ urlpatterns = [
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^profile/(?P<username>[a-zA-Z0-9]+)$',views.profile , name='profile'),
 	url(r'^upload/$' , views.upload_file ,name='upload_file'),
+	url(r'^success/$' , views.success_upload ,name ='success_upload'),
 ]

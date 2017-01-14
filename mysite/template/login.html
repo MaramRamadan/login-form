@@ -1,28 +1,36 @@
 {% load staticfiles %}
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>login</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-        <script src="{% static 'js/jquery.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    </head>
+	<head>
+		<title>login</title>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	</head>
 
-    <body>
+	<body>
 
-        <div class="container">
-            <h1>Login</h1>
-    		If you have not created an account yet, then please <a href="/myapp/register/">sign up </a> first.
-            <form id="login_form" method="post" action="/myapp/login/">
-                {% csrf_token %}
-                Username: <input type="text" name="username" value="" size="50" />
-                <br />
-                Password: <input type="password" name="password" value="" size="50" />
-                <br />
+		<div class="container">
+			<h1>Login</h1>
+			If you have not created an account yet, then please <a href="/myapp/register/">sign up </a> first.
+			<form id="login_form" method="post" action="/myapp/login/" class="form-inline">{% csrf_token %}
+				<label class="sr-only" for="inlineFormInput"> Username:</label>
+				<input type="text" name="username" value="" size="50" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput">
+				<label class="sr-only" for="inlineFormInputGroup">Password</label>
+				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+					<input type="password" name="password"  value="" size="50" class="form-control" id="inlineFormInputGroup">
+				</div>
+				<div class="form-check mb-2 mr-sm-2 mb-sm-0">
+					<label class="form-check-label">
+					<input class="form-check-input" name="remember_me" type="checkbox"> Remember me
+					</label>
+				</div>
 
-                <input type="submit" value="Login" />
-            </form>
-        </div>
-    </body>
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>  
+			<a href="/accounts/password/reset/">forget password</a>
+
+		</div>
+	</body>
 </html>

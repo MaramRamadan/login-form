@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'myapp',
+    'allauth',
+    'allauth.account',
 ]
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 3600
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

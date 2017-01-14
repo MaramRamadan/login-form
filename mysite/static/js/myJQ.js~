@@ -1,0 +1,30 @@
+$(document).ready(function() {
+        $(".remcom").click(function() {
+            console.log('delete comment');
+            var c_id = $(this).attr('id');
+            console.log(c_id);
+            $.ajax({
+                url: '/delete/'+ c_id,
+                success: function(response)
+                {
+                   console.log("success");
+                }
+            });
+           $(this).parent().parent().parent().hide();
+        });
+
+        $(".rempos").click(function() {
+            console.log('delete post');
+            var p_id = $(this).attr('id');
+            console.log(p_id);
+            $.ajax({
+                url: '/delete/post/'+ p_id,
+                success: function(response)
+                {
+                   console.log("success");
+                }
+            });
+           $(this).parent().parent().parent().hide();
+        });
+        $('').click(function(_){});
+    });

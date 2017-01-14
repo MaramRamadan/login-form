@@ -25,4 +25,5 @@ urlpatterns =[
 	url(r'^$', index),
 	url(r'^admin/', admin.site.urls),
 	url(r'^myapp/', include('myapp.urls')),
+    url(r'^accounts/', include('allauth.urls'))
 ]

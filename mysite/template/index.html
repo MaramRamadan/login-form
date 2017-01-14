@@ -4,21 +4,24 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
-	<script src="{% static 'js/jquery.min.js' %}"></script>
-	<script src="{% static 'js/bootstrap.min.js' %}"></script>
-</head>
-<body>
-	<ul>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	</head>
+	<body> 
 		{% if user.is_authenticated %}
-		<li> hello <a href="/myapp/profile/{{user.username}}">{{ user.username }}!</a></li>
-		<a href="/myapp/logout/">Logout</a><br />
+			<span>hello <a href="/myapp/profile/{{user.username}}">{{ user.username }}!</a><br/></span>
+			<a href="/myapp/logout/">Logout</a><br/>
 		{% else %}
-		<li><a href="/myapp/login/">Login</a></li>
-		<li><a href="/myapp/register/">regist</a></li>
+			<a href="/myapp/register/"><span class="glyphicon glyphicon-user"></span> Sign Up</a><br/>
+			<a href="/myapp/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a><br/>
 		{% endif %}
-		
-	</ul>
-</body>
+
+		<a href="/myapp/upload/">Upload file page</a>
+				    
+
+
+	</body>
 </html>
 

@@ -4,6 +4,7 @@
 <html>
     <head>
         <title>Registration</title>
+         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         <script src="{% static 'js/jquery.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>  
@@ -13,9 +14,8 @@
         <h1>Register</h1>
        Already have an account? Then please <a href="/myapp/login/">sign in.</a>
 
-        <form id="user_form" method="post" action="/myapp/register/"
+        <form id="user_form" class="form-inline" method="post" action="/myapp/register/"
                 enctype="multipart/form-data">
-
             {% csrf_token %}
             {{ user_form.as_p }}
             <!-- Provide a button to click to submit the form. -->

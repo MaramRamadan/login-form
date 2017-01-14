@@ -48,6 +48,8 @@ def user_login(request):
 	else:
 		context = RequestContext(request)
 		if request.method == 'POST':
+			if not request.POST.get('remember_me', None):
+				request.session.set_expiry(0)
 			username = request.POST['username']
 			password = request.POST['password']
 			user = authenticate(username=username, password=password)
@@ -65,26 +67,22 @@ def user_login(request):
 
 @login_required
 def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect('/myapp/')
+	logout(request)
+	return HttpResponseRedirect('/myapp/')
 
 def upload_file(request):
-    # Handle file upload
+	form = DocumentForm() # A empty, unbound form
+	# Load documents for the list page
+	documents = Document.objects.all()
+	context = RequestContext(request)
+	return render_to_response('upload.html',{'form': form}, context)
+
+def success_upload(request):
 	if request.method == 'POST':
+		documents = Document.objects.all()
 		form = DocumentForm(request.POST, request.FILES)
 		if form.is_valid():
 			newdoc = Document(docfile = request.FILES['docfile'])
 			newdoc.save()
 			# Redirect to the document list after POST
-			return HttpResponseRedirect(reverse('myapp.views.list'))
-	else:
-		form = DocumentForm() # A empty, unbound form
-	# Load documents for the list page
-	documents = Document.objects.all()
-
-	# Render list page with the documents and the form
-	return render_to_response(
-		'myapp/list.html',
-		{'documents': documents, 'form': form},
-		context_instance=RequestContext(request)
-	)
+			return HttpResponseRedirect(reverse('myapp.views.success_upload'))
