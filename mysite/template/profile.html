@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </head>
+
+    <body>
+		
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>email</th>
+        <th>name</th>
+        <th>password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{user.email}}</td>
+        <td>{{user.username}}</td>
+        <td>********</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
