@@ -5,14 +5,13 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
 	<ul>
-	{% if form.errors %}
-        <p class="error">Lo sentimos, la combinacion de usuario y contrasena no es correcta!</p>
-      {% endif %}  
 		{% if user.is_authenticated %}
-		<li> hello {{ user.username }}!</li>
+		<li> hello <a href="/myapp/profile/{{user.username}}">{{ user.username }}!</a></li>
 		<a href="/myapp/logout/">Logout</a><br />
 		{% else %}
 		<li><a href="/myapp/login/">Login</a></li>

@@ -4,12 +4,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login ,logout
-from myapp.forms import UserForm
+from myapp.forms import *
+from django.contrib.auth.models import User
+from myapp.models import Document
 
 
 def index(request):
 	return render(request,'index.html',{'message': 'hello'})
-     
+  
+def profile(request ,username):
+	user = User.objects.get(username=username)
+	return render(request, 'profile.html', {},{"user":user}) 
+
 def register(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/myapp/')
@@ -32,9 +38,9 @@ def register(request):
 				print user_form.errors
 		else:
 			user_form = UserForm()
-			return render_to_response(
-			'register.html',
-			{'user_form': user_form,'registered': registered}, context)
+	return render_to_response(
+	'register.html',
+	{'user_form': user_form,'registered': registered}, context)
 
 def user_login(request):
 	if request.user.is_authenticated():
@@ -62,3 +68,23 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/myapp/')
 
+def upload_file(request):
+    # Handle file upload
+	if request.method == 'POST':
+		form = DocumentForm(request.POST, request.FILES)
+		if form.is_valid():
+			newdoc = Document(docfile = request.FILES['docfile'])
+			newdoc.save()
+			# Redirect to the document list after POST
+			return HttpResponseRedirect(reverse('myapp.views.list'))
+	else:
+		form = DocumentForm() # A empty, unbound form
+	# Load documents for the list page
+	documents = Document.objects.all()
+
+	# Render list page with the documents and the form
+	return render_to_response(
+		'myapp/list.html',
+		{'documents': documents, 'form': form},
+		context_instance=RequestContext(request)
+	)
